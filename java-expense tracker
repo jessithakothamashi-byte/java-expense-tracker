@@ -1,0 +1,108 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Expense {
+
+    String name;
+    double amount;
+
+    Expense(String name, double amount) {
+        this.name = name;
+        this.amount = amount;
+    }
+}
+
+public class ExpenseTracker {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Expense> expenses = new ArrayList<>();
+
+        while (true) {
+
+            System.out.println("\n--- EXPENSE TRACKER ---");
+            System.out.println("1. Add Expense");
+            System.out.println("2. View Expenses");
+            System.out.println("3. Exit");
+
+            System.out.print("Enter choice: ");
+            int choice = sc.nextInt();
+            sc.nextLine();
+
+            if (choice == 1) {
+
+                System.out.print("Enter expense name: ");
+                String name = sc.nextLine();
+
+                System.out.print("Enter amount: ₹");
+                double amount = sc.nextDouble();
+
+                expenses.add(new Expense(name, amount));
+
+                System.out.println("Expense added.");
+
+            } else if (choice == 2) {
+
+                double total = 0;
+
+                System.out.println("\n--- EXPENSES ---");
+
+                for (Expense expense : expenses) {
+
+                    System.out.printf(
+                        "%s: ₹%.2f%n",
+                        expense.name,
+                        expense.amount
+                    );
+
+                    total += expense.amount;
+                }
+
+                System.out.println("----------------");
+                System.out.printf("Total: ₹%.2f%n", total);
+
+            } else if (choice == 3) {
+
+                System.out.println("Thank you!");
+                break;
+
+            } else {
+                System.out.println("Invalid choice.");
+            }
+        }
+
+        sc.close();
+    }
+}
+
+OUTPUT:
+--- EXPENSE TRACKER ---
+1. Add Expense
+2. View Expenses
+3. Exit
+Enter choice: 1
+Enter expense name: Food
+Enter amount: ₹250
+Expense added.
+
+--- EXPENSE TRACKER ---
+1. Add Expense
+2. View Expenses
+3. Exit
+Enter choice: 1
+Enter expense name: Bus
+Enter amount: ₹50
+Expense added.
+
+--- EXPENSE TRACKER ---
+1. Add Expense
+2. View Expenses
+3. Exit
+Enter choice: 2
+
+--- EXPENSES ---
+Food: ₹250.00
+Bus: ₹50.00
+----------------
+Total: ₹300.00
